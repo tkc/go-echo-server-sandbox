@@ -13,8 +13,8 @@ func TestCreate(t *testing.T) {
 }
 
 func TestFetch(t *testing.T) {
-		u := User{}
-		user := u.Fetch(10);
+		//u := User{}
+		//user := u.Fetch(10);
 		//t.Log(user)
 		//assert.Equal(t, user.Id, 2)//TODO Not equal
 }
