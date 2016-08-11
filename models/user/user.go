@@ -52,7 +52,6 @@ func (u *User) Fetch(id int64) User {
 		db := db.Connect()
 		user := User{Id:id}
 		db.First(&user)
-
 		return user
 }
 
@@ -76,7 +75,7 @@ func (u *User) FetchByNameAndAge(name string, age int) []User {
 
 func (u *User) MapByName(name string) []User {
 		db := db.Connect()
-		db.Where(map[string]interface{}{"name": "test"}).Find(&users)
+		db.Where(map[string]interface{}{"name": name}).Find(&users)
 		return users
 }
 
