@@ -14,13 +14,14 @@ func status(c echo.Context) error {
 }
 
 func main() {
-
-		fmt.Println("start")
+		fmt.Println("sever start")
 		e := echo.New()
 		u := userModel.User{}
 		h := handler.CreateHandler(u)
-
 		e.GET("/", status)
-		e.GET("/test", h.GetUser)
+		e.GET("/user/:id", h.GetUser)
+		e.POST("/user", h.CreateUser)
+		e.DELETE("/user", h.DeleteUser)
 		e.Run(standard.New(":3001"))
 }
+
