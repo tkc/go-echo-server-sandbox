@@ -50,10 +50,6 @@ func (h handler) CreateUser(c echo.Context) error {
 		return c.JSON(http.StatusOK, user)
 }
 
-func (h handler) UpdateUser(c echo.Context) error {
-		return c.JSON(http.StatusOK, "OK")
-}
-
 func (h handler) DeleteUser(c echo.Context) error {
 		id, _ := strconv.Atoi(c.Param("id"))
 		h.userModel.Delete(int64(id));
