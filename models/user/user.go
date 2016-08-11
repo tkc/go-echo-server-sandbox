@@ -52,7 +52,6 @@ func (u *User) Fetch(id int64) User {
 		db := db.Connect()
 		user := User{Id:id}
 		db.First(&user)
-
 		return user
 }
 
