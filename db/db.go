@@ -7,9 +7,7 @@ import (
 )
 
 func Connect() *gorm.DB {
-
 		connection := config.DbUser + ":" + config.DbPass + "@tcp([" + config.DbHost + "]:" + config.DbPort + ")/" + config.DbName + "?charset=utf8&parseTime=True&loc=" + config.DbLocate
-
 		db, err := gorm.Open(
 				"mysql",
 				connection,
@@ -19,5 +17,6 @@ func Connect() *gorm.DB {
 		}
 		return db
 }
+
 
 

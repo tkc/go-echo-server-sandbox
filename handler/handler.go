@@ -34,6 +34,10 @@ func CreateHandler(u userModel.User) *handler {
 		return &handler{u}
 }
 
+func (h handler) GetTemplate(c echo.Context) error {
+		return c.Render(http.StatusOK, "hello", "test")
+}
+
 func (h handler) GetUser(c echo.Context) error {
 		id, _ := strconv.Atoi(c.Param("id"))
 		user := h.userModel.Fetch(int64(id));
