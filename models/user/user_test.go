@@ -27,9 +27,9 @@ func TestFetch(t *testing.T) {
 func TestAll(t *testing.T) {
 		u := User{}
 		users := u.All();
-		t.Log(users)
 		for i, user := range users {
 				t.Log(i)
+				t.Log(user.Name)
 				t.Log(user)
 		}
 }
