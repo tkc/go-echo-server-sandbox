@@ -7,12 +7,17 @@ import (
 )
 
 func Connect() *gorm.DB {
+
+		connection := config.DbUser + ":" + config.DbPass + "@tcp([" + config.DbHost + "]:" + config.DbPort + ")/" + config.DbName + "?charset=utf8&parseTime=True&loc=" + config.DbLocate
+
 		db, err := gorm.Open(
 				"mysql",
-				config.DbUser + ":" + config.DbPass + "@/" + config.DbName + "?charset=utf8&parseTime=True&loc=" + config.DbHost,
+				connection,
 		)
 		if err != nil {
 				panic("failed to connect database")
 		}
 		return db
 }
+
+

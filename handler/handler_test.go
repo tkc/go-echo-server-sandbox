@@ -5,7 +5,6 @@ import (
 		"net/http/httptest"
 		"strings"
 		"testing"
-
 		"github.com/labstack/echo"
 		"github.com/tkc/go-echo-server-sandbox/models/user"
 		"github.com/labstack/echo/engine/standard"
