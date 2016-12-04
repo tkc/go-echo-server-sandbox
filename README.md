@@ -8,7 +8,7 @@ github.com/jinzhu/gorm
 ```
 
 # MySQL Database Config
-please edit config.go
+please edit config.go.
 
 ```
 const DbUser = "<user>"
@@ -20,7 +20,6 @@ const DbLocate = "Asia%2FTokyo"
 ```
 
 # model
-user table
 ```
 type User struct {
 		Id        int64
@@ -33,7 +32,7 @@ type User struct {
 ```
 
 # Unit testing
-To run the  test suites, you can run the command:
+To run the  test suites, you can run the command.
 
 ```
 ./client_ci.sh
