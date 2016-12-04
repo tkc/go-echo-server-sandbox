@@ -15,11 +15,8 @@ type User struct {
 		DeletedAt *time.Time
 }
 
+var user User
 var users [] User
-
-func (u *User) GetName() string {
-		return u.Name
-}
 
 func (u *User) Migrate() {
 		db := db.Connect()
@@ -27,30 +24,34 @@ func (u *User) Migrate() {
 		db.AutoMigrate(&User{})
 }
 
-func (u *User) All() []User {
+func (u *User) GetName() string {
+		return u.Name
+}
+
+func (u *User) All(limit int, offset int) []User {
 		db := db.Connect()
 		db.AutoMigrate(&User{})
-		db.Order("id desc,name, age").Find(&users)
+		db.Limit(limit).Offset(offset).Order("id desc,name, age").Find(&users)
 		return users
 }
 
 func (u *User) Create(name string, age int) User {
 		db := db.Connect()
-		user := User{Name: name, Age:age}
+		user = User{Name: name, Age:age}
 		db.Create(&user)
 		return user
 }
 
 func (u *User) UpdateName(id int64, name string) User {
 		db := db.Connect()
-		user := User{Id:id}
+		user = User{Id:id}
 		db.Model(&user).Update("name", name)
 		return user
 }
 
 func (u *User) Fetch(id int64) User {
 		db := db.Connect()
-		user := User{Id:id}
+		user = User{Id:id}
 		db.First(&user)
 		return user
 }
@@ -81,6 +82,6 @@ func (u *User) MapByName(name string) []User {
 
 func (u *User) Delete(id int64) {
 		db := db.Connect()
-		user := User{Id:id}
+		user = User{Id:id}
 		db.Delete(&user)
 }
