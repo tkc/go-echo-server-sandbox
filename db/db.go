@@ -17,6 +17,3 @@ func Connect() *gorm.DB {
 		}
 		return db
 }
-
-
-

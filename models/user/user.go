@@ -28,10 +28,10 @@ func (u *User) GetName() string {
 		return u.Name
 }
 
-func (u *User) All() []User {
+func (u *User) All(limit int, offset int) []User {
 		db := db.Connect()
 		db.AutoMigrate(&User{})
-		db.Order("id desc,name, age").Find(&users)
+		db.Limit(limit).Offset(offset).Order("id desc,name, age").Find(&users)
 		return users
 }
 

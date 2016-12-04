@@ -8,14 +8,14 @@ import (
 )
 
 type (
+		handler struct {
+				userModel userModel.User
+		}
 		resultStatus struct {
 				Status bool
 		}
 		resultUserJson struct {
 				User userModel.User
-		}
-		handler struct {
-				userModel userModel.User
 		}
 		postUserData struct {
 				Name   string `json:"name" form:"name"`
@@ -23,6 +23,18 @@ type (
 				AgeInt int
 		}
 )
+
+/*
+	Template Type
+*/
+
+type (
+		userTemplate struct {
+				Title string
+				Users [] userModel.User
+		}
+)
+
 
 func (p *postUserData) changeAgeType() {
 		var i int
@@ -35,7 +47,13 @@ func CreateHandler(u userModel.User) *handler {
 }
 
 func (h handler) GetTemplate(c echo.Context) error {
-		return c.Render(http.StatusOK, "hello", "test")
+		users := h.userModel.All(10,0)
+		//users := userModel.User.All()//TODO
+		res := userTemplate{
+				Title:"users result",
+				Users:users,
+		}
+		return c.Render(http.StatusOK, "user", res)
 }
 
 func (h handler) GetUser(c echo.Context) error {

@@ -18,15 +18,14 @@ func TestCreate(t *testing.T) {
 }
 
 func TestFetch(t *testing.T) {
-		//u := User{}
-		//user := u.Fetch(10);
-		//t.Log(user)
-		//assert.Equal(t, user.Id, 2)//TODO Not equal
+		u := User{}
+		user := u.Fetch(10);
+		assert.Equal(t, int(user.Id), 10)
 }
 
 func TestAll(t *testing.T) {
 		u := User{}
-		users := u.All();
+		users := u.All(10,0);
 		for i, user := range users {
 				t.Log(i)
 				t.Log(user.Name)

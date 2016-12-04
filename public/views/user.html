@@ -1,0 +1,28 @@
+{{define "user"}}
+
+{{template "header"}}
+<p>title:{{.Title}}</p>
+<p>count:{{len .Users}}</p>
+
+{{range $index, $user := .Users}}
+
+<ul>
+    <li>Index:{{$index}}</li>
+    <li>Id;{{$user.Id}}</li>
+    <li>Name:{{$user.Name}}</li>
+    <li>Age:{{$user.Age}}</li>
+    <li>
+        {{$k := $user.Age}}
+        {{if lt 29 $k}}
+            Over 30
+        {{else}}
+            Under 30
+        {{end}}
+    </li>
+</ul>
+
+{{end}}
+
+{{template "footer"}}
+{{end}}
+

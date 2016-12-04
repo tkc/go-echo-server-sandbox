@@ -25,7 +25,7 @@ func status(c echo.Context) error {
 
 func main() {
 
-		fmt.Println("sever start")
+		fmt.Println("echo start!")
 
 		t := &Template{
 				templates: template.Must(template.ParseGlob("public/views/*.html")),
