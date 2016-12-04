@@ -19,7 +19,7 @@ const DbPort = "3306"
 const DbLocate = "Asia%2FTokyo"
 ```
 
-# model
+# Model
 ```
 type User struct {
 		Id        int64
