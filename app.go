@@ -34,8 +34,9 @@ func main() {
 		e := echo.New()
 		u := userModel.User{}
 		h := handler.CreateHandler(u)
-
+		
 		e.SetRenderer(t)
+		e.GET("/public/", status)
 		e.GET("/", status)
 		e.GET("template", h.GetTemplate)
 		e.GET("/user/:id", h.GetUser)
