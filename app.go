@@ -1,46 +1,47 @@
 package main
 
 import (
-		"fmt"
-		"io"
-		"net/http"
-		"text/template"
-		"github.com/labstack/echo"
-		"github.com/labstack/echo/engine/standard"
-		"github.com/tkc/go-echo-server-sandbox/handler"
-		"github.com/tkc/go-echo-server-sandbox/models/user"
+	"net/http"
+	"github.com/labstack/echo"
+	"golang.org/x/crypto/acme/autocert"
+	"github.com/labstack/echo/middleware"
+	"github.com/tkc/go-echo-server-sandbox/env"
+	"github.com/tkc/go-echo-server-sandbox/handler"
+	"github.com/tkc/go-echo-server-sandbox/template"
+	"github.com/tkc/go-echo-server-sandbox/models/user"
 )
 
-type Template struct {
-		templates *template.Template
-}
-
-func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-		return t.templates.ExecuteTemplate(w, name, data)
-}
-
 func status(c echo.Context) error {
-		return c.String(http.StatusOK, "ok")
+	return c.String(http.StatusOK, "status ok")
 }
 
 func main() {
 
-		fmt.Println("echo start!")
+	e := echo.New()
+	u := userModel.User{}
+	h := handler.CreateHandler(u)
 
-		t := &Template{
-				templates: template.Must(template.ParseGlob("public/views/*.html")),
-		}
+	template := template.GetTemplate()
+	e.Renderer = &template
 
-		e := echo.New()
-		u := userModel.User{}
-		h := handler.CreateHandler(u)
-		
-		e.SetRenderer(t)
-		e.GET("/public/", status)
-		e.GET("/", status)
-		e.GET("template", h.GetTemplate)
-		e.GET("/user/:id", h.GetUser)
-		e.POST("/user", h.CreateUser)
-		e.DELETE("/user", h.DeleteUser)
-		e.Run(standard.New(":3001"))
+	e.Use(middleware.Recover())
+	e.Use(middleware.Logger())
+
+	e.Static("/css", "./public/css")
+	e.Static("/dist", "./public/dist")
+
+	e.GET("/public", status)
+	e.GET("/", status)
+	e.GET("template", h.GetTemplate)
+	e.GET("/user/:id", h.GetUser)
+	e.POST("/user", h.CreateUser)
+	e.DELETE("/user", h.DeleteUser)
+
+	if env.IsProd() {
+		e.AutoTLSManager.Cache = autocert.DirCache("./.cache")
+		e.Pre(middleware.HTTPSRedirect())
+		e.Logger.Fatal(e.StartAutoTLS(":443"))
+	} else {
+		e.Logger.Fatal(e.Start(env.GetPort()))
+	}
 }
