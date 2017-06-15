@@ -40,6 +40,9 @@ func main() {
 	if env.IsProd() {
 		e.AutoTLSManager.Cache = autocert.DirCache("./.cache")
 		e.Pre(middleware.HTTPSRedirect())
+		go func(c *echo.Echo) {
+			e.Logger.Fatal(e.Start(":80"))
+		}(e)
 		e.Logger.Fatal(e.StartAutoTLS(":443"))
 	} else {
 		e.Logger.Fatal(e.Start(env.GetPort()))
