@@ -7,7 +7,7 @@ echo server sandbox using ORM mapper and html template.
 glide install
 ```
 
-# MySQL Database Config
+## MySQL Database Config
 please edit config.yaml
 
 ```
@@ -20,12 +20,12 @@ database:
   password: <pass word>
 ```
 
-# Migrate
+## Migrate
 ```
 go run ./migrate/migrate.go
 ```
 
-# Model
+## Model
 ```
 type User struct {
 		Id        int64
@@ -37,7 +37,7 @@ type User struct {
 }
 ```
 
-# Unit testing
+## Unit testing
 To run the  test suites, you can run the command.
 
 ```
