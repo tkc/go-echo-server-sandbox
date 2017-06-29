@@ -8,15 +8,16 @@ github.com/jinzhu/gorm
 ```
 
 # MySQL Database Config
-please edit config.go.
+please edit config.yaml
 
 ```
-const DbUser = "<user>"
-const DbPass = "<pass>"
-const DbName = "<dbName>"
-const DbHost = "127.0.0.1"
-const DbPort = "3306"
-const DbLocate = "Asia%2FTokyo"
+app: local
+port: :8080
+
+database:
+  name: <database name>
+  user_name: <user name>
+  password: <pass word>
 ```
 
 # Model
