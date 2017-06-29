@@ -1,10 +1,10 @@
 # go-echo-server-sandbox
 echo server sandbox using ORM mapper and html template.
 
+## Install vendor files
 
 ```
-github.com/labstack/echo
-github.com/jinzhu/gorm
+glide install
 ```
 
 # MySQL Database Config
