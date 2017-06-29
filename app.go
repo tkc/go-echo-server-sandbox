@@ -5,7 +5,7 @@ import (
 	"github.com/labstack/echo"
 	"golang.org/x/crypto/acme/autocert"
 	"github.com/labstack/echo/middleware"
-	"github.com/tkc/go-echo-server-sandbox/env"
+	"github.com/go-echo-server-sandbox/config"
 	"github.com/tkc/go-echo-server-sandbox/handler"
 	"github.com/tkc/go-echo-server-sandbox/template"
 	"github.com/tkc/go-echo-server-sandbox/models/user"
@@ -37,7 +37,7 @@ func main() {
 	e.POST("/user", h.CreateUser)
 	e.DELETE("/user", h.DeleteUser)
 
-	if env.IsProd() {
+	if config.IsProd() {
 		e.AutoTLSManager.Cache = autocert.DirCache("./.cache")
 		e.Pre(middleware.HTTPSRedirect())
 		go func(c *echo.Echo) {
@@ -45,6 +45,6 @@ func main() {
 		}(e)
 		e.Logger.Fatal(e.StartAutoTLS(":443"))
 	} else {
-		e.Logger.Fatal(e.Start(env.GetPort()))
+		e.Logger.Fatal(e.Start(config.GetPort()))
 	}
 }
