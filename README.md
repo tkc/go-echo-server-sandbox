@@ -1,7 +1,7 @@
 # go-echo-server-sandbox
 echo server sandbox using ORM mapper and html template.
 
-## Install vendor files
+## Install Vendor Files
 
 ```
 glide install
