@@ -5,7 +5,7 @@ import (
 	"github.com/labstack/echo"
 	"golang.org/x/crypto/acme/autocert"
 	"github.com/labstack/echo/middleware"
-	"github.com/go-echo-server-sandbox/config"
+	"github.com/tkc/go-echo-server-sandbox/config"
 	"github.com/tkc/go-echo-server-sandbox/handler"
 	"github.com/tkc/go-echo-server-sandbox/template"
 	"github.com/tkc/go-echo-server-sandbox/models/user"
