@@ -1,0 +1,7 @@
+app: local
+port: :8080
+
+database:
+  name: test
+  user_name: root
+  password: secret

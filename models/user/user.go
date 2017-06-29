@@ -3,7 +3,6 @@ package userModel
 import (
 	"time"
 	"github.com/tkc/go-echo-server-sandbox/db"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type User struct {

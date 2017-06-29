@@ -37,7 +37,7 @@ func TestGetName(t *testing.T) {
 
 func TestFetchByName(t *testing.T) {
 	u := User{}
-	users := u.FetchByName("test");
+	users := u.FetchByName("test")
 	for _, v := range users {
 		assert.Equal(t, v.Name, "test")
 	}
@@ -45,7 +45,7 @@ func TestFetchByName(t *testing.T) {
 
 func TestFetchByNameAge(t *testing.T) {
 	u := User{}
-	users := u.FetchByNameAndAge("test", 30);
+	users := u.FetchByNameAndAge("test", 30)
 	for _, v := range users {
 		assert.Equal(t, v.Name, "test")
 		assert.Equal(t, v.Age, 30)
@@ -54,7 +54,7 @@ func TestFetchByNameAge(t *testing.T) {
 
 func TestMapByName(t *testing.T) {
 	u := User{}
-	users := u.MapByName("test");
+	users := u.MapByName("test")
 	for _, v := range users {
 		assert.Equal(t, v.Name, "test")
 	}
@@ -62,7 +62,6 @@ func TestMapByName(t *testing.T) {
 
 func TestUpdateName(t *testing.T) {
 	u := User{}
-	user := u.UpdateName(4, "Hoo");
-	assert.Equal(t, user.Name, "Hoo")
+	user := u.UpdateName(4, "Foo")
+	assert.Equal(t, user.Name, "Foo")
 }
-
