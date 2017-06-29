@@ -1,31 +1,55 @@
 package env
 
 import (
-	"os"
-	"github.com/joho/godotenv"
+	"fmt"
+	"github.com/spf13/viper"
 )
 
-const EnvFile = ".env"
+func getViper() *viper.Viper {
+	vp := viper.New()
+	vp.SetConfigName("config")
+	vp.SetConfigType("yaml")
+	vp.AddConfigPath(".")
+	vp.AddConfigPath("../")
+	vp.AddConfigPath("../../")
+	vp.AddConfigPath("../../../")
+	vp.AddConfigPath("../../../../")
+	vp.AddConfigPath("../../../../../")
+	err := vp.ReadInConfig()
+
+	if err != nil {
+		panic(fmt.Errorf("error: %s", err))
+	}
+	return vp
+}
+
+func getAppEnv() string {
+	v := getViper()
+	app := v.Get("app")
+	return app.(string)
+}
 
 func IsProd() bool {
-	if (GetAppEnv() == "prod") {
+	if (getAppEnv() == "prod") {
 		return true
 	} else {
 		return false
 	}
 }
 
-func GetAppEnv() string {
-	godotenv.Load(EnvFile)
-	return os.Getenv("APP_ENV")
-}
-
 func GetPort() string {
-	godotenv.Load(EnvFile)
-	return os.Getenv("PORT")
+	v := getViper()
+	return v.Get("port").(string)
 }
 
 func GetDataBaseAccess() string {
-	godotenv.Load(EnvFile)
-	return os.Getenv("DATA_BASE")
+	v := getViper()
+	connection := fmt.Sprintf("%s:%s@tcp([127.0.0.1]:3306)/%s?charset=utf8&parseTime=True&loc=",
+		v.Get("database.user_name"),
+		v.Get("database.password"),
+		v.Get("database.name"),
+	)
+	connection += "Asia%2FTokyo"
+	return connection
 }
+
