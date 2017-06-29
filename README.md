@@ -20,6 +20,11 @@ database:
   password: <pass word>
 ```
 
+# Migrate
+```
+go run ./migrate/migrate.go
+```
+
 # Model
 ```
 type User struct {
