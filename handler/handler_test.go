@@ -7,7 +7,7 @@ import (
 	"testing"
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
-	"github.com/tkc/go-echo-server-sandbox.git/models/user"
+	"github.com/tkc/go-echo-server-sandbox/models/user"
 )
 
 var (
