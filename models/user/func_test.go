@@ -60,8 +60,3 @@ func TestMapByName(t *testing.T) {
 	}
 }
 
-func TestUpdateName(t *testing.T) {
-	u := User{}
-	user := u.UpdateName(4, "Foo")
-	assert.Equal(t, user.Name, "Foo")
-}
