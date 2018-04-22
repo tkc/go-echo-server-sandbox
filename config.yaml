@@ -3,5 +3,5 @@ port: :8080
 
 database:
   name: ***
-  user_name: ****
+  user : ***
   password: ***
