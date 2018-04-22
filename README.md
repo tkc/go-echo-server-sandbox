@@ -1,4 +1,5 @@
 # go-echo-server-sandbox
+
 echo server sandbox using ORM mapper and html template.
 
 ## Install Vendor Files
@@ -8,25 +9,27 @@ glide install
 ```
 
 ## MySQL Database Config
-please edit config.yaml
 
-```
+``` yaml
 app: local
 port: :8080
 
 database:
-  name: <database name>
-  user_name: <user name>
-  password: <pass word>
+  name: <DataBaseName>
+  name: <UserName>
+  password: <PassWord>
 ```
 
-## Migrate
-```
-go run ./migrate/migrate.go
+## Migration
+
+``` bash
+$ go run ./migrate/migrate.go
 ```
 
-## Model
-```
+## User Model
+
+``` bash
+
 type User struct {
 		Id        int64
 		Name      string
@@ -37,9 +40,23 @@ type User struct {
 }
 ```
 
-## Unit testing
-To run the  test suites, you can run the command.
+## Run Developing Server 
 
+``` bash
+$ fresh
 ```
-./client_ci.sh
+
+## Create User
+
+``` bash
+$ curl http://localhost:8080/user \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"Name": "userName","Age": 1}'
+```
+
+## Testing
+
+``` bash
+$ go test ./models/user/ -v
 ```

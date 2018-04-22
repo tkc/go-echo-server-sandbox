@@ -9,10 +9,29 @@ import (
 	"github.com/tkc/go-echo-server-sandbox/handler"
 	"github.com/tkc/go-echo-server-sandbox/template"
 	"github.com/tkc/go-echo-server-sandbox/models/user"
+	"gopkg.in/go-playground/validator.v9"
 )
 
+type (
+	CustomValidator struct {
+		validator *validator.Validate
+	}
+)
+
+func (cv *CustomValidator) Validate(i interface{}) error {
+	return cv.validator.Struct(i)
+}
+
 func status(c echo.Context) error {
-	return c.String(http.StatusOK, "status ok")
+
+	message := `
+  ____    __
+  / __/___/ /  ___
+ / _// __/ _ \/ _ \
+/___/\__/_//_/\___/ 
+
+`
+	return c.String(http.StatusOK, message)
 }
 
 func main() {
@@ -23,6 +42,7 @@ func main() {
 
 	template := template.GetTemplate()
 	e.Renderer = &template
+	e.Validator = &CustomValidator{validator: validator.New()}
 
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
@@ -30,12 +50,13 @@ func main() {
 	e.Static("/css", "./public/css")
 	e.Static("/dist", "./public/dist")
 
-	e.GET("/public", status)
 	e.GET("/", status)
 	e.GET("template", h.GetTemplate)
-	e.GET("/user/:id", h.GetUser)
-	e.POST("/user", h.CreateUser)
-	e.DELETE("/user", h.DeleteUser)
+
+	e.GET("/user/:id", h.Get)
+	e.POST("/user", h.Create)
+	e.PUT("/user", h.Update)
+	e.DELETE("/user", h.Delete)
 
 	if config.IsProd() {
 		e.AutoTLSManager.Cache = autocert.DirCache("./.cache")

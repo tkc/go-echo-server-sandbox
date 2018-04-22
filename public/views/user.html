@@ -5,7 +5,6 @@
 <p>count:{{len .Users}}</p>
 
 {{range $index, $user := .Users}}
-
 <ul>
     <li>Index:{{$index}}</li>
     <li>Id;{{$user.Id}}</li>
@@ -20,9 +19,7 @@
         {{end}}
     </li>
 </ul>
-
 {{end}}
 
 {{template "footer"}}
 {{end}}
-
