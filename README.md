@@ -46,7 +46,7 @@ type User struct {
 }
 ```
 
-## Run Developing Server 
+## Run Dev Server 
 
 ``` bash
 $ fresh
