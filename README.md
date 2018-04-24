@@ -2,15 +2,13 @@
 
 echo server sandbox using ORM mapper and html template.
 
-
-
 - github.com/labstack/echo
 - github.com/jinzhu/gorm
 
 
 ## Install Vendor Files
 
-```
+```sh
 glide install
 ```
 
@@ -28,14 +26,13 @@ database:
 
 ## Migration
 
-``` bash
+``` sh
 $ go run ./migrate/migrate.go
 ```
 
 ## User Model
 
-``` bash
-
+``` go
 type User struct {
 		Id        int64
 		Name      string
@@ -48,13 +45,13 @@ type User struct {
 
 ## Run Dev Server 
 
-``` bash
+``` sh
 $ fresh
 ```
 
 ## Create User
 
-``` bash
+``` sh
 $ curl http://localhost:8080/user \
   -X POST \
   -H "Content-Type: application/json" \
@@ -63,6 +60,6 @@ $ curl http://localhost:8080/user \
 
 ## Testing
 
-``` bash
+``` sh
 $ go test ./models/user/ -v
 ```
