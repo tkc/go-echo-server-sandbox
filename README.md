@@ -4,6 +4,7 @@ echo server sandbox using ORM mapper and html template.
 
 - github.com/labstack/echo
 - github.com/jinzhu/gorm
+- github.com/pilu/fresh
 
 
 ## Install Vendor Files
