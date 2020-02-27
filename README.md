@@ -28,6 +28,8 @@ make dep
 
 `note: cp config.yaml.example config.yaml`
 
+update database config
+
 ``` yaml
 app: local
 port: :8080
