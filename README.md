@@ -18,11 +18,10 @@ goenv global 1.13.x
 goenv rehash
 ```
 
-## Install Vendor Files
+## Dependency
 
 ```sh
-glide install
->>>>>>> master
+make dep
 ```
 
 ## Database (MySQL) Config
