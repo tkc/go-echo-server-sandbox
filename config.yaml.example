@@ -1,0 +1,8 @@
+app: local
+port: :8080
+
+database:
+  name: your database name
+  user : your login user 
+  password: your login password
+  

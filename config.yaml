@@ -1,8 +1,0 @@
-app: local
-port: :8080
-
-database:
-  name: commons
-  user : root 
-  password: secret
-  

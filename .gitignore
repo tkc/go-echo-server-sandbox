@@ -31,3 +31,4 @@ vendor/*
 
 glide.lock
 tmp/runner-build
+config.yaml
