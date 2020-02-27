@@ -54,7 +54,7 @@ $ go run ./migrate/migrate.go
 $ fresh
 ```
 
-## Create Mew User
+## Create New User
 
 ``` sh
 $ curl http://localhost:8080/user \
