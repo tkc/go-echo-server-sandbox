@@ -2,13 +2,18 @@
 
 echo server sandbox using ORM mapper and html template.
 
-## Install Vendor Files
+## Requirements
+
+### Go
 
 ```
-glide install
+brew install goenv
+goenv install 1.13.x
+goenv global 1.13.x
+goenv rehash
 ```
 
-## MySQL Database Config
+## Database (MySQL) Config
 
 ``` yaml
 app: local
@@ -26,27 +31,13 @@ database:
 $ go run ./migrate/migrate.go
 ```
 
-## User Model
-
-``` bash
-
-type User struct {
-		Id        int64
-		Name      string
-		Age       int
-		CreatedAt time.Time
-		UpdatedAt time.Time
-		DeletedAt *time.Time
-}
-```
-
-## Run Developing Server 
+## Serve and Hot Reload
 
 ``` bash
 $ fresh
 ```
 
-## Create User
+## Create Mew User
 
 ``` bash
 $ curl http://localhost:8080/user \

@@ -2,13 +2,14 @@ package main
 
 import (
 	"net/http"
+
 	"github.com/labstack/echo"
-	"golang.org/x/crypto/acme/autocert"
 	"github.com/labstack/echo/middleware"
 	"github.com/tkc/go-echo-server-sandbox/config"
 	"github.com/tkc/go-echo-server-sandbox/handler"
+	userModel "github.com/tkc/go-echo-server-sandbox/models/user"
 	"github.com/tkc/go-echo-server-sandbox/template"
-	"github.com/tkc/go-echo-server-sandbox/models/user"
+	"golang.org/x/crypto/acme/autocert"
 	"gopkg.in/go-playground/validator.v9"
 )
 

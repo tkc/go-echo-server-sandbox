@@ -2,6 +2,7 @@ app: local
 port: :8080
 
 database:
-  name: ***
-  user : ***
-  password: ***
+  name: commons
+  user : root 
+  password: secret
+  

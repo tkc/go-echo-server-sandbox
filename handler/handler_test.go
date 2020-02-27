@@ -5,9 +5,10 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
-	"github.com/tkc/go-echo-server-sandbox/models/user"
+	userModel "github.com/tkc/go-echo-server-sandbox/models/user"
 )
 
 var (
@@ -28,7 +29,7 @@ func TestGetUser(t *testing.T) {
 
 	if assert.NoError(t, h.GetUser(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		//t.Log(rec.Body.String())
+		// t.Log(rec.Body.String())
 	}
 }
 
