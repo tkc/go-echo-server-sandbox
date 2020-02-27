@@ -2,6 +2,11 @@
 
 echo server sandbox using ORM mapper and html template.
 
+- github.com/labstack/echo
+- github.com/jinzhu/gorm
+- github.com/pilu/fresh
+
+
 ## Requirements
 
 ### Go
@@ -11,6 +16,13 @@ brew install goenv
 goenv install 1.13.x
 goenv global 1.13.x
 goenv rehash
+```
+
+## Install Vendor Files
+
+```sh
+glide install
+>>>>>>> master
 ```
 
 ## Database (MySQL) Config
@@ -27,19 +39,19 @@ database:
 
 ## Migration
 
-``` bash
+``` sh
 $ go run ./migrate/migrate.go
 ```
 
 ## Serve and Hot Reload
 
-``` bash
+``` sh
 $ fresh
 ```
 
 ## Create Mew User
 
-``` bash
+``` sh
 $ curl http://localhost:8080/user \
   -X POST \
   -H "Content-Type: application/json" \
@@ -48,6 +60,6 @@ $ curl http://localhost:8080/user \
 
 ## Testing
 
-``` bash
+``` sh
 $ go test ./models/user/ -v
 ```
