@@ -1,3 +1,5 @@
+![Go](https://github.com/tkc/go-echo-server-sandbox/workflows/Go/badge.svg)
+
 # go-echo-server-sandbox
 
 echo server sandbox using ORM mapper and html template.
