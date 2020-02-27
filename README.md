@@ -27,6 +27,8 @@ glide install
 
 ## Database (MySQL) Config
 
+`note: cp config.yaml.example config.yaml`
+
 ``` yaml
 app: local
 port: :8080
