@@ -1,7 +1,0 @@
-app: local
-port: :8080
-
-database:
-  name: ***
-  user : ***
-  password: ***

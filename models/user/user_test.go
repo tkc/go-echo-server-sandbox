@@ -2,6 +2,7 @@ package userModel
 
 import (
 	"testing"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -59,4 +60,3 @@ func TestMapByName(t *testing.T) {
 		assert.Equal(t, v.Name, "test")
 	}
 }
-

@@ -1,10 +1,11 @@
 package template
 
 import (
-	"io"
 	"bytes"
-	"text/template"
 	"encoding/json"
+	"io"
+	"text/template"
+
 	"github.com/labstack/echo"
 )
 

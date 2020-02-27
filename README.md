@@ -7,13 +7,27 @@ echo server sandbox using ORM mapper and html template.
 - github.com/pilu/fresh
 
 
+## Requirements
+
+### Go
+
+```
+brew install goenv
+goenv install 1.13.x
+goenv global 1.13.x
+goenv rehash
+```
+
 ## Install Vendor Files
 
 ```sh
 glide install
+>>>>>>> master
 ```
 
-## MySQL Database Config
+## Database (MySQL) Config
+
+`note: cp config.yaml.example config.yaml`
 
 ``` yaml
 app: local
@@ -31,26 +45,13 @@ database:
 $ go run ./migrate/migrate.go
 ```
 
-## User Model
-
-``` go
-type User struct {
-		Id        int64
-		Name      string
-		Age       int
-		CreatedAt time.Time
-		UpdatedAt time.Time
-		DeletedAt *time.Time
-}
-```
-
-## Run Dev Server 
+## Serve and Hot Reload
 
 ``` sh
 $ fresh
 ```
 
-## Create User
+## Create Mew User
 
 ``` sh
 $ curl http://localhost:8080/user \

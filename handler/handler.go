@@ -2,9 +2,10 @@ package handler
 
 import (
 	"net/http"
-	"github.com/spf13/cast"
+
 	"github.com/labstack/echo"
-	"github.com/tkc/go-echo-server-sandbox/models/user"
+	"github.com/spf13/cast"
+	userModel "github.com/tkc/go-echo-server-sandbox/models/user"
 )
 
 type (
@@ -12,17 +13,17 @@ type (
 		userModel userModel.User
 	}
 	resultJson struct {
-		Id        int64
-		Name      string
-		Age       int
+		Id   int64
+		Name string
+		Age  int
 	}
 	postUserData struct {
-		Name   string `json:"Name" form:"name" validate:"required"`
-		Age    int `json:"Age" form:"age" validate:"required"`
+		Name string `json:"Name" form:"name" validate:"required"`
+		Age  int    `json:"Age" form:"age" validate:"required"`
 	}
 	resultHtmlTemplate struct {
 		Title string
-		Users [] userModel.User
+		Users []userModel.User
 	}
 )
 
@@ -42,9 +43,9 @@ func (h handler) GetTemplate(c echo.Context) error {
 func (h handler) Get(c echo.Context) error {
 	user := h.userModel.Fetch(cast.ToInt64(c.Param("id")))
 	return c.JSON(http.StatusOK, resultJson{
-		Id:user.Id,
-		Name:user.Name,
-		Age:user.Age,
+		Id:   user.Id,
+		Name: user.Name,
+		Age:  user.Age,
 	})
 }
 
