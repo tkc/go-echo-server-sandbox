@@ -39,7 +39,7 @@ port: :8080
 database:
   name: <database name>
   name: <user name>
-  password: <passWord>
+  password: <user passWord>
 ```
 
 ## Migration
