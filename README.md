@@ -37,9 +37,9 @@ app: local
 port: :8080
 
 database:
-  name: <DataBaseName>
-  name: <UserName>
-  password: <PassWord>
+  name: <database name>
+  name: <user name>
+  password: <passWord>
 ```
 
 ## Migration
