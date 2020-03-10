@@ -66,5 +66,5 @@ $ curl http://localhost:8080/user \
 ## Testing
 
 ``` sh
-$ go test ./models/user/ -v
+$ go test ./...
 ```
