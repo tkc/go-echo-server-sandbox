@@ -26,6 +26,14 @@ goenv rehash
 make dep
 ```
 
+## Install golangci-lint
+
+```
+brew install golangci/tap/golangci-lint
+brew upgrade golangci/tap/golangci-lint
+```
+[more...](https://github.com/golangci/golangci-lint#macos)
+
 ## Database (MySQL) Config
 
 `note: cp config.yaml.example config.yaml`
