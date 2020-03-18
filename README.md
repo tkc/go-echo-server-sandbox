@@ -14,16 +14,16 @@ echo server sandbox using ORM mapper and html template.
 ### Go
 
 ```
-brew install goenv
-goenv install 1.13.x
-goenv global 1.13.x
-goenv rehash
+$ brew install goenv
+$ goenv install 1.13.x
+$ goenv global 1.13.x
+$ goenv rehash
 ```
 
 ## Dependency
 
 ```sh
-make dep
+$ make dep
 ```
 
 ## Install golangci-lint
