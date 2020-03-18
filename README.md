@@ -29,10 +29,16 @@ make dep
 ## Install golangci-lint
 
 ```
-brew install golangci/tap/golangci-lint
-brew upgrade golangci/tap/golangci-lint
+$ brew install golangci/tap/golangci-lint
+$ brew upgrade golangci/tap/golangci-lint
 ```
 [more...](https://github.com/golangci/golangci-lint#macos)
+
+## Lint
+
+```
+$ golangci-lint run 
+```
 
 ## Database (MySQL) Config
 
