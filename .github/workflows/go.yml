@@ -35,6 +35,7 @@ jobs:
         sed -i -e "s/DATABASE_NAME/echo-test/g" config.yaml
         sed -i -e "s/DATABASE_USER_NAME/root/g" config.yaml  
         sed -i -e "s/DATABASE_USER_PASSWORD/password/g" config.yaml
+        sed -i -e "s/DATABASE_PORT/${{ job.services.mysql.ports['3306'] }}/g" config.yaml
         cat config.yaml
     - name: Migration
       run: |

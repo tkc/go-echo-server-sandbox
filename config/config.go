@@ -34,9 +34,10 @@ func GetPort() string {
 
 func GetDataBaseAccess() string {
 	v := getViper()
-	connection := fmt.Sprintf("%s:%s@tcp([127.0.0.1]:32768)/%s?charset=utf8&parseTime=True&loc=",
+	connection := fmt.Sprintf("%s:%s@tcp([127.0.0.1]:%d)/%s?charset=utf8&parseTime=True&loc=",
 		v.Get("database.user"),
 		v.Get("database.password"),
+		v.Get("database.port"),
 		v.Get("database.name"),
 	)
 	connection += "Asia%2FTokyo"

@@ -5,3 +5,4 @@ database:
   name: DATABASE_NAME
   user: DATABASE_USER_NAME
   password: DATABASE_USER_PASSWORD
+  port: DATABASE_PORT
