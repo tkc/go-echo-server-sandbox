@@ -35,10 +35,10 @@ jobs:
         sed -i -e "s/DATABASE_USER_NAME/root/g" config.yaml  
         sed -i -e "s/DATABASE_USER_PASSWORD/password/g" config.yaml
         cat config.yaml
-    - name: Migration
-      run: |
-        go run ./migrate/migrate.go 
-      # - name: Vet    
-        # run: go vet ./...
+    # - name: Migration
+      # run: |
+        # go run ./migrate/migrate.go 
+      - name: Vet    
+        run: go vet ./...
     - name: Build
       run:  go build main.go
