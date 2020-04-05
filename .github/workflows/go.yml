@@ -38,7 +38,7 @@ jobs:
     # - name: Migration
       # run: |
         # go run ./migrate/migrate.go 
-    - name: Vet    
-      run: go vet ./...
+    # - name: Vet    
+      # run: go vet ./...
     - name: Build
       run:  go build main.go
