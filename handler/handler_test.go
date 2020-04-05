@@ -9,6 +9,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
 	userModel "github.com/tkc/go-echo-server-sandbox/models/user"
+	"github.com/webx-top/echo/engine/standard"
 )
 
 var (
@@ -29,7 +30,6 @@ func TestGetUser(t *testing.T) {
 
 	if assert.NoError(t, h.GetUser(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		// t.Log(rec.Body.String())
 	}
 }
 
@@ -47,7 +47,6 @@ func TestCreateUser(t *testing.T) {
 
 		if assert.NoError(t, h.CreateUser(c)) {
 			assert.Equal(t, http.StatusOK, rec.Code)
-			//t.Log(rec.Body.String())
 		}
 	}
 }
