@@ -10,18 +10,7 @@ import (
 	userModel "github.com/tkc/go-echo-server-sandbox/models/user"
 	"github.com/tkc/go-echo-server-sandbox/template"
 	"golang.org/x/crypto/acme/autocert"
-	"gopkg.in/go-playground/validator.v9"
 )
-
-type (
-	CustomValidator struct {
-		validator *validator.Validate
-	}
-)
-
-func (cv *CustomValidator) Validate(i interface{}) error {
-	return cv.validator.Struct(i)
-}
 
 func status(c echo.Context) error {
 
@@ -43,7 +32,6 @@ func main() {
 
 	template := template.GetTemplate()
 	e.Renderer = &template
-	e.Validator = &CustomValidator{validator: validator.New()}
 
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
