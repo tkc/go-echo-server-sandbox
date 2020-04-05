@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/spf13/viper"
 )
@@ -40,9 +39,6 @@ func GetDataBaseAccess() string {
 		v.Get("database.password"),
 		v.Get("database.name"),
 	)
-
-	log.Print(connection)
-
 	connection += "Asia%2FTokyo"
 	return connection
 }
