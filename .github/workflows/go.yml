@@ -11,7 +11,8 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_USER: root
+            MYSQL_PASSWORD: password
             MYSQL_DATABASE: echo-sandbox
         ports:
             - 3306
@@ -29,6 +30,16 @@ jobs:
     - name: Get dependencies
       run: |
         go mod download
+   - name: SetUp Confic.yml
+       run: |
+        cp config.yaml.example config.yaml
+        sed -i -e "s/DATABASE_NAME/echo-sandbox/g" config.yaml
+        sed -i -e "s/DATABASE_USER_NAME/root/g" config.yaml  
+        sed -i -e "s/DATABASE_USER_PASSWORD/password/g" config.yaml
+        cat config.yaml
+   - name: Migration
+       run: |
+        go run ./migrate/migrate.go 
     # - name: Vet    
       # run: go vet ./...
     - name: Build
