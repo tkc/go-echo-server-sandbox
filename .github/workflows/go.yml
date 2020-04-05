@@ -36,7 +36,7 @@ jobs:
         sed -i -e "s/DATABASE_USER_PASSWORD/password/g" config.yaml
         cat config.yaml
     - name: Migration
-       run: |
+      run: |
         go run ./migrate/migrate.go 
       # - name: Vet    
         # run: go vet ./...
