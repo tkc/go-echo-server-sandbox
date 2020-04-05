@@ -1,8 +1,9 @@
-app: local
+app: developing
 port: :8080
 
 database:
-  name: your database name
-  user : your login user 
-  password: your login password
+  name: DATABASE_NAME
+  user: DATABASE_USER_NAME
+  password: DATABASE_USER_PASSWORD
+  port: DATABASE_PORT
   
