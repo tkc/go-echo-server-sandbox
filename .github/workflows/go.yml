@@ -28,7 +28,7 @@ jobs:
     - name: Get dependencies
       run: |
         go mod download
-    - name: SetUp Confic.yml
+    - name: Set up Confic.yml
       run: |
         cp config.yaml.example config.yaml
         sed -i -e "s/DATABASE_NAME/test/g" config.yaml
