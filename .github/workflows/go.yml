@@ -24,14 +24,13 @@ jobs:
       with:
         go-version: 1.13
       id: go
-
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
     - name: Get dependencies
-      run: |
+       run: |
         go mod download
    - name: SetUp Confic.yml
-      run: |
+       run: |
         cp config.yaml.example config.yaml
         sed -i -e "s/DATABASE_NAME/echo-sandbox/g" config.yaml
         sed -i -e "s/DATABASE_USER_NAME/root/g" config.yaml  
@@ -43,4 +42,4 @@ jobs:
     # - name: Vet    
       # run: go vet ./...
     - name: Build
-      run:  go build main.go
+       run:  go build main.go
