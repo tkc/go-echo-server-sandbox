@@ -42,4 +42,4 @@ jobs:
     # - name: Vet    
       # run: go vet ./...
     - name: Build
-       run:  go build main.go
+      run:  go build main.go
