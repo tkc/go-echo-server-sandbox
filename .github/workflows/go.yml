@@ -1,23 +1,55 @@
 name: Go
 on: [push]
-jobs:
 
-  build:
-    name: Build
+jobs:
+  test:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: echo-test
+        ports:
+        - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
     - name: Set up Go 1.13
       uses: actions/setup-go@v1
       with:
-        go-version: 1.13
-      id: go
+        go-version: 1.13.4
+      id: go  
+    - name: Verify MySQL connection from host
+      run: |
+        sudo apt-get install -y mysql-client
+        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
-    # - name: Get dependencies
-    #   run: |
-    #     export GO111MODULE=on
-    #     go mod download
+    - name: Get dependencies
+      run: |
+        go mod download
+    - name: Set up Confic.yml
+      run: |
+        cp config.yaml.example config.yaml
+        sed -i -e "s/DATABASE_NAME/echo-test/g" config.yaml
+        sed -i -e "s/DATABASE_USER_NAME/root/g" config.yaml  
+        sed -i -e "s/DATABASE_USER_PASSWORD/password/g" config.yaml
+        sed -i -e "s/DATABASE_PORT/${{ job.services.mysql.ports['3306'] }}/g" config.yaml
+        cat config.yaml
+    - name: Migration
+      run: |
+        go run ./migrate/migrate.go
+    - name: Test    
+      run: |
+        go test ./models/user/
+        
+    # - name: Test    
+        # run: |
+          # go test ./...   
     # - name: Vet    
       # run: go vet ./...
     - name: Build
       run:  go build main.go
+
+
