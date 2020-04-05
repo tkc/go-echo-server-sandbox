@@ -42,7 +42,7 @@ jobs:
         go run ./migrate/migrate.go
     - name: Test    
       run: |
-      go test ./models/user/
+        go test ./models/user/
     # - name: Vet    
       # run: go vet ./...
     - name: Build
