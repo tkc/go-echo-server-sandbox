@@ -39,7 +39,9 @@ jobs:
         cat config.yaml
     - name: Migration
       run: |
-        go run ./migrate/migrate.go 
+        go run ./migrate/migrate.go
+    - name: Vet    
+      run: go test ./...      
     # - name: Vet    
       # run: go vet ./...
     - name: Build
