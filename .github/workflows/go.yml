@@ -31,7 +31,7 @@ jobs:
       run: |
         go mod download
    - name: SetUp Confic.yml
-       run: |
+      run: |
         cp config.yaml.example config.yaml
         sed -i -e "s/DATABASE_NAME/echo-sandbox/g" config.yaml
         sed -i -e "s/DATABASE_USER_NAME/root/g" config.yaml  
