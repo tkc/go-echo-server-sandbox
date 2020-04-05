@@ -2,47 +2,33 @@ name: Go
 on: [push]
 
 jobs:
-
-  build:
-    name: Build
+  test-host:
     runs-on: ubuntu-latest
-   
     services:
       mysql:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test
-        ports: 
+        ports:
         - 3306
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+    - name: Verify MySQL connection from host
+      run: |
+        sudo apt-get install -y mysql-client
+        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
+  test-container:
+    runs-on: ubuntu-latest
+    container: ubuntu
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
     - name: Verify MySQL connection from container 
       run: |
         apt-get update
         apt-get install -y mysql-client
-        mysql --host mysql -uroot -ppassword -e "SHOW DATABASES"  
-    - name: Set up Go 1.13
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.13
-      id: go
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
-    - name: Get dependencies
-      run: |
-        go mod download
-    - name: SetUp Confic.yml
-      run: |
-        cp config.yaml.example config.yaml
-        sed -i -e "s/DATABASE_NAME/test/g" config.yaml
-        sed -i -e "s/DATABASE_USER_NAME/user/g" config.yaml  
-        sed -i -e "s/DATABASE_USER_PASSWORD/password/g" config.yaml
-        cat config.yaml
-    - name: Migration
-      run: |
-        go run ./migrate/migrate.go 
-    # - name: Vet    
-      # run: go vet ./...
-    - name: Build
-      run:  go build main.go
+        mysql --host mysql -uroot -ppassword -e "SHOW DATABASES"
