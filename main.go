@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/acme/autocert"
 )
 
-func status(c echo.Context) error {
+func getStatus(c echo.Context) error {
 
 	message := `
   ____    __
@@ -39,7 +39,7 @@ func main() {
 	e.Static("/css", "./public/css")
 	e.Static("/dist", "./public/dist")
 
-	e.GET("/", status)
+	e.GET("/", getStatus)
 	e.GET("template", h.GetTemplate)
 
 	e.GET("/user/:id", h.Get)
