@@ -11,24 +11,17 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: test
         ports: 
         - 3306
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
-      # mysql:
-      #   image: mysql:5.7
-      #   env:
-      #       MYSQL_USER: root
-      #       MYSQL_PASSWORD: password
-      #       MYSQL_DATABASE: echo-sandbox
-      #   ports:
-      #   - 3306
-      #   options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
-
     steps:
+    - name: Verify MySQL connection from container 
+      run: |
+        apt-get update
+        apt-get install -y mysql-client
+        mysql --host mysql -uroot -ppassword -e "SHOW DATABASES"  
     - name: Set up Go 1.13
       uses: actions/setup-go@v1
       with:
