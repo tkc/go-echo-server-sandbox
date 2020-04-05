@@ -12,6 +12,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_USER: root
+          MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: echo-sandbox
         ports: 
