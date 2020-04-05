@@ -3,5 +3,5 @@ port: :8080
 
 database:
   name: DATABASE_NAME
-  user : DATABASE_USER_NAME
+  user: DATABASE_USER_NAME
   password: DATABASE_USER_PASSWORD
