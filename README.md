@@ -7,7 +7,7 @@ echo server sandbox using ORM mapper and html template.
 - github.com/labstack/echo
 - github.com/jinzhu/gorm
 - github.com/pilu/fresh
-
+- github actions
 
 ## Requirements
 
