@@ -18,7 +18,7 @@ fmt:
 
 build:
 	@echo GENERATING CODE...
-	@go build app.go
+	@go build main.go
 
 test:
 	@echo TESTING...
@@ -26,4 +26,4 @@ test:
 
 serve: build
 	@echo SERVING...
-	@./app
+	@./main
